@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class jonathan {
+public class ex001 {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
 
@@ -50,6 +50,7 @@ public class jonathan {
                 System.out.print("dezembro");
             }
         }
+        sc.close;
     }
 
 }
