@@ -3,54 +3,56 @@ import java.util.Scanner;
 public class ex001 {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+        int n;
 
-        int x;
-
-        System.out.print("x: ");
-        if (!sc.hasNextInt()){
+        System.out.print("Digite um numero de 1 a 12 para saber o mes: ");
+        if (!sc.hasNextInt()) {
             System.out.print("Erro!");
             return;
         }
-        x = sc.nextInt();
+        n = sc.nextInt();
 
-        if (x < 1 || x > 12){
+        imprimir(n);
+    }
+
+    public static void imprimir(int n){
+
+        if (n < 1 || n > 12){
             System.out.print("Erro!");
         }
         else {
-            if (x == 1){
+            if (n == 1){
                 System.out.print("Janeiro");
-            } else if (x == 2) {
+            } else if (n == 2) {
                 System.out.print("Fevereiro");
             }
-            else if (x == 3) {
+            else if (n == 3) {
                 System.out.print("marco");
             }
-            else if (x == 4) {
+            else if (n == 4) {
                 System.out.print("abril");
             }
-            else if (x == 5) {
+            else if (n == 5) {
                 System.out.print("maio");
             }
-            else if (x == 6) {
+            else if (n == 6) {
                 System.out.print("junho");
             }
-            else if (x == 7) {
+            else if (n == 7) {
                 System.out.print("julho");
-            }else if (x == 8) {
+            }else if (n == 8) {
                 System.out.print("agosto");
-            }else if (x == 9) {
+            }else if (n == 9) {
                 System.out.print("setembro");
-            }else if (x == 10) {
+            }else if (n == 10) {
                 System.out.print("outubro");
             }
-            else if (x == 11) {
+            else if (n == 11) {
                 System.out.print("novembro");
             }
             else {
                 System.out.print("dezembro");
             }
         }
-        sc.close;
     }
-
 }
