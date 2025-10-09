@@ -31,13 +31,15 @@ public class TicketMachine
     public TicketMachine(int ticketCost)
     {
         
-        while(ticketCost <= 0){
-            System.out.println("Insira um valor positivo.");
-            ticketCost = sc.nextInt();
+        if (ticketCost <= 0) {
+            System.out.println("Aviso: O preço do bilhete deve ser maior que zero. Definindo preço para 1.");
+            this.price = 1; // Define um preço padrão seguro.
+        } else {
+            this.price = ticketCost;
         }
-        price = ticketCost;
-        balance = 0;
-        total = 0;
+
+        this.balance = 0;
+        this.total = 0;
     }
 
     /**
@@ -54,7 +56,7 @@ public class TicketMachine
      */
     public int getBalance()
     {
-        
+        return balance;
     }
 
     /**
@@ -62,13 +64,11 @@ public class TicketMachine
      */
     public void insertMoney(int amount)
     {
-        while(amount < 0){
-            System.out.println("Valor inválido. Digite apenas valores positivos");
-            amount = sc.nextInt();
+        if (amount > 0) {
+            balance = balance + amount;
+        } else {
+            System.out.println("Não é possível inserir valores negativos. Por favor, insira um valor positivo.");
         }
-        balance = balance + amount;
-        
-        return balance;
     }
 
     /**
@@ -76,12 +76,14 @@ public class TicketMachine
      * Update the total collected and
      * reduce the balance to zero.
      */
-    public void printTicket(int ticketCost)
+    public void printTicket()
     {
-        if(balance < ticketCost){
-            System.out.println("erro!");
+        if (balance < price) {
+            int needed = price - balance;
+            System.out.println("Erro: Saldo insuficiente. Faltam " + needed + " centavos para comprar o bilhete.");
+            return;
         }
-        else{
+        
         // Simulate the printing of a ticket.
         System.out.println("##################");
         System.out.println("# The BlueJ Line");
@@ -90,9 +92,18 @@ public class TicketMachine
         System.out.println("##################");
         System.out.println();
 
-        // Update the total collected with the balance.
-        total = total + balance;
-        // Clear the balance.
+        int change = balance - price;
+       total = total + price;
+
+        if (change > 0) {
+            System.out.println("Seu troco é: " + change + " centavos.");
+        }
         balance = 0;
+    }
+    public int emptyMachine()
+    {
+        int collected = total;
+        total = 0;
+        return collected;
     }
 }}
